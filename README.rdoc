@@ -1,0 +1,11 @@
+== Niclas Gelin
+Short but precise script to enable outer world contact. (Outside of Safirgränd)
+
+== How to use
+Should be fairly simple.
+
+  Niclas.check_current_status
+
+
+
+
