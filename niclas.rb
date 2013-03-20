@@ -44,9 +44,9 @@ class Niclas
     begin
       # Still haven't figured out a solution to this.
       # Fortunately, it rarely happens.
-      raise "Feeling akward. I don't know what to do."
+      raise "Feeling awkward. I don't know what to do."
     rescue
-      puts 'Rescued from akwardness'
+      puts 'Rescued from awkwardness'
       puts "Problem: Still don't now what to do or how to connect to outer world"
     end
   end
