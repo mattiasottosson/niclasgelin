@@ -23,7 +23,7 @@ class Niclas
 
   def current_status
     if ready_to_connect?
-      reach_iphone_and_call_mr_ottosson
+      reach_iphone_and_discover_callback_possibilities
     else
       puts 'Asleep. Aka business as usual'
       sleep 10
@@ -40,7 +40,7 @@ class Niclas
 
   private
 
-  def reach_iphone_and_call_mr_ottosson
+  def reach_iphone_and_discover_callback_possibilities
     begin
       raise "Something went wrong. This should be impossible."
     rescue
