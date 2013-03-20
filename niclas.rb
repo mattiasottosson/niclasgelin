@@ -1,29 +1,46 @@
 class Niclas
+  attr_accessor :got_smoke, :got_coffee, :is_on_balcony
 
-  def self.check_current_status
-    puts 'Checking current status on myself'
+  def initialize
+    set_sleep_statuses
+  end
 
-    # Calculating awake posibility. Based on randomness to simulate Niclas IRL.
-    awake = rand(2) == 0 ? false : true
+  # Calculating awake posibility. Based on randomness to simulate Niclas IRL.
+  def awake?
+    awake = rand(2) == 0
+    awake ? set_awake_statuses : set_sleep_statuses
 
-    if awake == true
-      got_smoke = true
-      got_coffee = true
-      is_on_balcony = true
-    end
+    awake
+  end
 
-    ready_to_connect = got_smoke && got_coffee && is_on_balcony ? true : false
+  def feeling_good?
+    got_smoke && got_coffee && is_on_balcony
+  end
 
-    if ready_to_connect
-      self.reach_iphone_and_call_mr_ottosson
+  def ready_to_connect?
+    awake? && feeling_good?
+  end
+
+  def current_status
+    if ready_to_connect?
+      reach_iphone_and_call_mr_ottosson
     else
       puts 'Asleep. Aka business as usual'
       sleep 10
-      self.check_current_status
+      current_status
     end
   end
 
-  def self.reach_iphone_and_call_mr_ottosson
+  class << self
+    def check_current_status
+      puts 'Checking current status on myself'
+      Niclas.new.current_status
+    end
+  end
+
+  private
+
+  def reach_iphone_and_call_mr_ottosson
     begin
       raise "Something went wrong. This should be impossible."
     rescue
@@ -32,6 +49,13 @@ class Niclas
     end
   end
 
+  def set_awake_statuses
+    self.got_smoke, self.got_coffee, self.is_on_balcony = true, true, true
+  end
+
+  def set_sleep_statuses
+    self.got_smoke, self.got_coffee, self.is_on_balcony = false, false, false
+  end
 end
 
 Niclas.check_current_status
